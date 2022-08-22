@@ -17,3 +17,12 @@ docker build --tag corenlp-jre8-alpine .
 ```sh
 docker run -m 4g --publish 9000:9000 --detach --name corenlp corenlp-jre8-alpine
 ```
+
+## Build/push for multiple architectures
+
+The following is just an example. You'll need to use your own Docker Hub username.
+
+```sh
+CORENLP_VERSION=4.2.0
+docker buildx build --push --platform linux/amd64,linux/arm64 --build-arg CORENLP_VERSION=$CORENLP_VERSION --tag scurrilous/corenlp-jre8-alpine:$CORENLP_VERSION --tag scurrilous/corenlp-jre8-alpine:latest .
+```
